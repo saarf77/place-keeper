@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Place Keeper</title>
+</head>
+
+<body onload="onInit('map')">
+
+    <nav>
+        <ul> 
+        <a class="nav-item nav-home nav-selected" href="index.html">Home</a>
+        <a class="nav-item nav-map" href="map.html">Map</a>
+        <a class="nav-item nav-preferences" href="user-prefs.html">Customize</a>
+    </ul>
+    </nav>
+    
+    <h1>Your Saved Places</h1>
+    <main id="map"></main>
+    <img src="images/location.png" class="current-location" onclick="getPosition()">
+    <div class="error-input"></div>
+
+    <section class="favorites-area">
+
+
+        <div class="fav-locations">
+
+        </div>
+
+    </section>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm3zYkW7wg6dnV3VagY8qsT86jZhYLHGQ&callback=initMap" async defer></script>
+    <script src="js/storageService.js"></script>
+    <script src="js/placeService.js"></script>
+    <script src="js/placeController.js"></script>
+    <script src="js/userPrefController.js"></script>
+    <script src="js/userPrefService.js"></script>
+    <script src="js/utilService.js"></script>
+</body>
+
+</html>
