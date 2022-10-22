@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css" />
+
+</head>
+
+<body onload="onInit()">
+  <header>
+    <nav>
+      <ul>
+        <a class="nav-item nav-home nav-selected" href="index.html">Home</a>
+        <a class="nav-item nav-map" href="places.html">Map</a>
+        <a class="nav-item nav-preferences" href="user-settings.html">Customize</a>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="map"></div>
+    <div class="list-container">
+      <a href="#" download="place-list.csv" onclick="onDownloadCSV(this)">Download as CSV</a>
+      <ul class="place-list"> </ul>
+    </div>
+  </main>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaQVlcIeYewnFSmm3xkL2d3HHy9xhYbz4&callback=initMap"></script>
+  <script src="js/services/util.service.js"></script>
+  <script src="js/services/storage.service.js"></script>
+  <script src="js/services/user.service.js"></script>
+  <script src="js/services/place.service.js"></script>
+  <script src="js/place.controller.js"></script>
+</body>
+
+</html>

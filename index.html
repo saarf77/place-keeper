@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Place Keeper</title>
-</head>
+    <link rel="stylesheet" href="css/main1.css" />
 
-<body onload="onInit('home')">
-
-    <nav>
+  </head>
+  <body onload="onInit()">
+    <header class="header">
+      <nav>
         <ul> 
-        <a class="nav-item nav-home nav-selected" href="index.html">Home</a>
-        <a class="nav-item nav-map" href="map.html">Map</a>
-        <a class="nav-item nav-preferences" href="user-prefs.html">Customize</a>
-    </ul>
-    </nav>
-
+          <a class="nav-item nav-home nav-selected" href="index.html">Home</a>
+          <a class="nav-item nav-map" href="places.html">Map</a>
+          <a class="nav-item nav-preferences" href="user-settings.html">Customize</a>
+        </ul>
+      </nav>
+      <h1>The <br> Place <br> Keeper</h1>
+      <!-- <h2 class="greet"></h2> -->
+    </header>
+    <main> 
     <main class="main-intro">
-        <h1>Welcome to the Place Keeper👀 </h1>
-        <img src="img/marker.png">
+      <img src="img/marker.png">
+      <!-- <h2>Welcome Back <span class="name"></span>!</h2> -->
     </main>
-    
-    <script src="js/storageService.js"></script>
-    <script src="js/placeService.js"></script>
-    <script src="js/placeController.js"></script>
-    <script src="js/userPrefController.js"></script>
-    <script src="js/userPrefService.js"></script>
-    <script src="js/utilService.js"></script>
-</body>
-
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/user.service.js"></script>
+    <script src="js/services/user.service.js"></script>
+    <script src="js/home.controller.js"></script>
+  </body>
 </html>

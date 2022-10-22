@@ -1,0 +1,116 @@
+html,
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* background-image: url(../img/1.jpg); */
+    background-position: center;
+    background-size: cover;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    font-family: Lato, sans-serif;
+    /* background-image: linear-gradient(#219ebc, #f1faee); */
+    color: black;
+    font-size: 4rem;
+    line-height: 5rem;
+    font-style: normal;
+    text-align: left;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+
+}
+
+/* NAVBAR */
+
+nav {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.nav-item {
+    flex-grow: 1;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: #f1faee;
+    color: black;
+    font-size: larger;
+    transition: ease-in 0.2s;
+    text-decoration: none;
+    width: 1rem;
+}
+
+.nav-item:hover {
+    background-color: #219ebc;
+    color: black;
+    z-index: 1;
+    transform: scale(1.1);
+}
+
+.nav-selected {
+    background-color: #e63946;
+    color: black;
+    font-weight: 700;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin-left: 30%;
+    margin-right: 30%;
+    gap: 30px;
+    background: #f1faee;
+    padding: 20px 20px;
+    border-radius: 10px;
+    font-family: 'poppins-500';
+}
+
+.settings label {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.settings input {
+    width: 50%;
+    border: none;
+}
+
+.settings input[type="text"] {
+    border-bottom: 2px solid black;
+}
+
+.settings button {
+    padding-block: 6px;
+    border-radius: 6px;
+    border: none;
+    background: #219ebc;
+    color: #eee;
+    font-family: inherit;
+    letter-spacing: .1rem;
+    font-size: larger;
+    position: relative;
+}
+
+.settings button:hover {
+    background-color: #219ebc;
+    color: white;
+    z-index: 1;
+    transform: scale(1.1);
+    cursor: pointer;
+}

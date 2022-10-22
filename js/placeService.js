@@ -23,6 +23,7 @@ function getLocationById(locationId) {
     return location;
 }
 
+var markers = google.maps.Marker()
 function initMap(lat = null, lng = null) {
     var centerOn;
     if (!lat || !lng) {
@@ -37,8 +38,13 @@ function initMap(lat = null, lng = null) {
     map = new google.maps.Map(elMap, options);
     map.addListener('click', function (event) {
         onNewLocation(event);
+        renderMarkers()
+
     });
+    renderMarkers()
+    
 }
+
 
 // // In the following example, markers appear when the user clicks on the map.
 // // Each marker is labeled with a single alphabetical character.
@@ -46,32 +52,35 @@ function initMap(lat = null, lng = null) {
 // let labelIndex = 0;
 
 // function initMap() {
-//   const bangalore = { lat: 12.97, lng: 77.59 };
+//   const Modiin = { lat: 31.8903, lng: 35.0104  };
 //   const map = new google.maps.Map(document.getElementById("map"), {
 //     zoom: 12,
-//     center: bangalore,
+//     center: Modiin,
 //   });
 
 //   // This event listener calls addMarker() when the map is clicked.
 //   google.maps.event.addListener(map, "click", (event) => {
-//     addMarker(event.latLng, map);
+//       addMarker(event.latLng, map);
+//       onNewLocation(event);
 //   });
 //   // Add a marker at the center of the map.
-//   addMarker(bangalore, map);
+//   addMarker(Modiin, map);
 // }
 
-// // Adds a marker to the map.
-// function addMarker(location, map) {
-//   // Add the marker at the clicked location, and add the next-available label
-//   // from the array of alphabetical characters.
-//   new google.maps.Marker({
-//     position: location,
-//     label: labels[labelIndex++ % labels.length],
-//     map: map,
-//   });
-// }
+// Adds a marker to the map.
+function addMarker(location, map) {
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+    var marker =new google.maps.Marker({
+    position: location,
+    label: labels[labelIndex++ % labels.length],
+    map: map,
+    });
+    markers = []
+    markers.push(marker)
+}
 
-// window.initMap = initMap;
+window.initMap = initMap;
 
 
 
@@ -106,9 +115,10 @@ function addNewLocation(event) {
     var name = newLocationName.value;
     var lat = gCurrLocation.lat,
         lng = gCurrLocation.lng;
-
+    var date = new Date()
+    var formatedDate = date.getDate()+ "-" + date.getMonth()+ "-" +date.getFullYear()+ ",  " + date.getHours() + ":" + date.getMinutes() 
     document.querySelector('.error-input').innerHTML = '';
-    let newLocation = { id: makeId(), lat, lng, name: name };
+    let newLocation = { id: makeId(),lat: lat, lng: lng, name: name, date: formatedDate};
 
     if (gLocations && gLocations.length) {
 
@@ -134,9 +144,25 @@ function getPosition() {
 
 function showLocation(position) {
     map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude }, 10)
+    var date = new Date(position.timestamp)
+    document.getElementById("timestamp").innerHTML = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
 }
 
 function moveMap(lat, lng) {
     map.setCenter({ lat, lng }, 10)
 }
 
+function renderMarkers() {
+    const places = getPlaces()
+    // remove previous markers
+    gMarkers.forEach(marker => marker.setMap(null))
+    // create a marker for every place
+    gMarkers = places.map(({ lat, lng, name }) => {
+        const coord = { lat, lng }
+        return new google.maps.Marker({
+            position: coord,
+            map: gMap,
+            title: name
+        })
+    })
+}

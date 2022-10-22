@@ -1,0 +1,150 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.map {
+  margin: 30px;
+  height: 70vh;
+  width: 100%;
+}
+
+/* NAVBAR */
+h1 {
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-family: Lato, sans-serif;
+  /* background-image: linear-gradient(#219ebc, #f1faee); */
+  color: white;
+  font-size: 2em;
+  font-style: normal;
+  text-align: left;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-align: center;
+  justify-content: center;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-item {
+  flex-grow: 1;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  background-color: #f1faee;
+  color: black;
+  font-size: larger;
+  transition: ease-in 0.2s;
+  text-decoration: none;
+  width: 1rem;
+}
+
+.nav-item:hover {
+  background-color: #219ebc;
+  color: black;
+  z-index: 1;
+  transform: scale(1.1);
+}
+
+.nav-selected {
+  background-color: #e63946;
+  color: black;
+  font-weight: 700;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.clean-list {
+  list-style: none;
+}
+
+input:invalid {
+  border-color: #900;
+  background-color: #fdd;
+}
+
+.invalid {
+  border-color: #900;
+  background-color: #fdd;
+}
+
+.my-location img {
+  width: 25px;
+  height: 25px;
+  filter: invert(30%);
+}
+
+.my-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 10px;
+  border: 0px;
+  padding: 0px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  user-select: none;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
+.my-location:hover img {
+  filter: invert(0);
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+main {
+  display: flex;
+}
+.list-container{
+  background-color: #219ebc;
+}
+
+.list-container a{
+  text-decoration: none;
+  color: white;
+  margin: 5px;
+}
+.list-container a:hover{
+  color: black;
+  transition: .3s;
+
+}
+
+.place-list button{
+  background-color: #e63946;
+  color: #f1faee;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+  padding: 3px;
+  margin: 5px;
+}
+
+.place-list button:hover{
+  background-color: #f36c77;
+  transition: .3s;
+}

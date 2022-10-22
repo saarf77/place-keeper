@@ -32,29 +32,32 @@ function renderFavoritePlaces() {
             <div class="lat-lng">
             <div class="coord-block"><span>Lat:</span><p>${location.lat}</p></div>
             <div class="coord-block"><span>Lng:</span><p>${location.lng}</p></div>
+
+            <div class="coord-block"><span>Date:</span><p>${location.date}</p></div>
+
             </div>
-            <i class="fas fa-times" onclick="deleteLocation('${location.id}')"></i>
-            <button class="show-btn btn" onclick="onShowLocation(${location.id})">🚩</button>
-            <button class="delete-btn btn" onclick="onDeletePlaces(${location.id})">❌</button>
+            <i class="fas fa-times"></i>
+            <button class="show-btn btn" onclick="onShowLocation('${location.id}')">🚩</button>
+            <button class="delete-btn btn" onclick="onDeletePlaces('${location.id}')">❌</button>
         </div>
         `;
     });
+    // where????
+    // var date = new Date(position.timestamp)
+    //document.getElementById("timestamp").innerHTML = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
 
     document.querySelector('.fav-locations').innerHTML = strHtml.join('');
 }
 
 function onDeletePlaces(placeId) {
     deletePlace(placeId)
-    renderFavoritePlaces();
     _saveLocationsToStorage()
-
+    renderFavoritePlaces();
 }
 
 function deletePlace(placeId) {
-    var foundPlaceIdx = gPlaces.findIndex(function (place) {
-        return place.id === placeId
-    })
-    gPlaces.splice(foundPlaceIdx, 1)
+    var filteredLocations = gLocations.filter(location => location.id !== placeId)
+    gLocations = filteredLocations
 }
 
 function getPlace(id) {

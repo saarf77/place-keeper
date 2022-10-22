@@ -1,83 +1,43 @@
-'use strict';
+'use strict'
 
-function prefChangeNotice(success = true) {
-
-    var elNotice = document.querySelector('.settings-message');
-
-    if (success) {
-        elNotice.textContent = 'Settings Saved Successfully!';
-    } else {
-        elNotice.textContent = 'Settings Unchanges - Pick A Date!';
-    }
-    elNotice.style.opacity = '1';
-
-    setTimeout(() => {
-        elNotice.style.opacity = '0';
-    }, 2000);
+function init(){
+    renderUserSettings()
 }
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function onSetSettings(ev){
+ev.preventDefault()
+const name = document.querySelector('.name').value
+const background = document.querySelector('.background').value
+const color = document.querySelector('.color').value
+const range = document.querySelector('.range').value
+const map = document.querySelector('.map-start').value
+
+setSettings({name,background,color,range,map})
+console.log(name,background,color,range,map);
 }
 
-function onColorPrefChange(event) {
+function renderUserSettings(){
+    const {name,background,color,range,map} = getSettings()
 
-    event.preventDefault();
-    prefChangeNotice();
-    var elNewBgc = document.querySelector('input[name = "bgc"]');
-    var elNewTc = document.querySelector('input[name = "tc"]');
+    setBackgroundColorAndColor()
 
-    gPref = { bgc: elNewBgc.value, textColor: elNewTc.value };
-    setUserPrefChanges(gPref);
-    _savePreferencesToStorage();
+    document.querySelector('.name').value = name
+    document.querySelector('.background').value = background
+    document.querySelector('.color').value = color
+    document.querySelector('.range').value = range || 0
+    onSetZoom(range||0)
+    document.querySelector('.map-start').value = map
 }
 
-function onSavePrefs(ev){
-    ev.preventDefault()
-    var userPrefs = {
-       firstName: document.querySelector('#name').value,
-       zoomFactor: document.querySelector('#zoom').value,
-       bgdColor: document.querySelector('#bcg-color').value,
-       txtColor: document.querySelector('#txt-color').value
-    }
-    savePrefs(userPrefs)
-    window.location.href = 'index.html'
-    return userPrefs
+function onSetBackgroundColor(color){
+    document.querySelector('body').style.backgroundColor = color
 }
 
-function showZoom(newVal) {
-    document.getElementById('sZoom').innerHTML = newVal
+function onSetTextColor(color){
+    document.querySelector('body').style.color = color
 }
 
-function onMapInit(){
-    _createLocations()
+function onSetZoom(val){
+    document.querySelector('.range-value').innerText = val
 }
 
-function onIndexInit(){
-    var userPrefs = getUserPrefs()
-    console.log(userPrefs);
-    document.querySelector('.title-name-span').innerText = userPrefs.firstName
-    document.querySelector('body').style.backgroundColor = userPrefs.bgdColor
-    document.querySelector('.main-index-container').style.color = userPrefs.txtColor
-
-}
-
-function prefChangeNotice(success = true) {
-
-    var elNotice = document.querySelector('.settings-message');
-
-    if (success) {
-        elNotice.textContent = 'Settings Saved Successfully!';
-    } else {
-        elNotice.textContent = 'Settings Unchanges - Pick A Date!';
-    }
-    elNotice.style.opacity = '1';
-
-    setTimeout(() => {
-        elNotice.style.opacity = '0';
-    }, 2000);
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}

@@ -1,27 +1,37 @@
-'use strict';
+'use strict'
 
-var gPref;
-const KEYp = 'prefData';
-var gUserData;
+var gSettings = loadFromStorage('settings') || _createDefultSettings()
 
-const USER_PREF_OBJ_KEY = 'user-pref-DB'
-var gPrefs = {}
+function setSettings(settings) {
+    // const { name, background, color, range, map } = settings
 
-function setUserPrefChanges(preferences) {
-    document.body.style.backgroundColor = preferences.bgc;
-    document.body.style.color = preferences.textColor;
+    gSettings = settings
+    saveSettings()
 }
 
-function savePrefs(userPrefs){
-    gPrefs = userPrefs
-    _savePrefsToStorage()
-    console.log(gPrefs);
+
+function saveSettings() {
+    saveToStorage('settings', gSettings)
 }
 
-function getUserPrefs(){
-   return loadFromStorage(USER_PREF_OBJ_KEY)
+function getSettings() {
+    return gSettings
 }
 
-function _savePrefsToStorage() {
-    saveToStorage(USER_PREF_OBJ_KEY, gPrefs)
+function _createDefultSettings() {
+    const defaultSettings = {
+        name: '',
+        background: '#eeeeee',
+        color: '#333333',
+        zoom: '8',
+        map: ''
+    }
+    saveToStorage('settings', defaultSettings)
+    return defaultSettings
+}
+
+function setBackgroundColorAndColor() {
+    const elBodyStyle = document.querySelector('body').style
+    elBodyStyle.backgroundColor = gSettings.background
+    elBodyStyle.color = gSettings.color
 }

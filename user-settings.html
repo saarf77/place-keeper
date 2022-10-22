@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="css/userpref.css" />
+</head>
+
+<body onload="onInit()">
+  <nav>
+    <ul>
+      <a class="nav-item nav-home nav-selected" href="index.html">Home</a>
+      <a class="nav-item nav-map" href="places.html">Map</a>
+      <a class="nav-item nav-preferences" href="user-settings.html">Customize</a>
+    </ul>
+  </nav>
+  <main>
+    <h1>Customize it as you like</h1>
+
+    <form onsubmit="getFormData(event)">
+      <label>
+        <input name="name" type="text" placeholder="Enter your name" />
+      </label>
+
+      <label>
+        <span>Zoom Factor: </span>
+        <span class="rangeValue">11</span>
+        <input oninput="renderValue({value})" name="zoom" type="range" min="1" max="21" />
+      </label>
+      <label>
+
+        <span>Background Color</span>
+        <input name="bgColor" type="color" value="#f1f1f1" />
+      </label>
+
+      <label>
+        <span>Text Color</span>
+        <input name="textColor" type="color" value="#212529" />
+      </label>
+
+
+      <label for="myLoc">Choose a starting point:</label>
+      <!-- pattern="[\d]{1,2},[\d]{1,2}" regexp -->
+      <!-- pattern="([\d]{1,2},[\d]{1,2})|(?:[ia-zA-Z])" regexp -->
+      <input list="loc" id="myLoc" name="loc" pattern="([\d]{1,2},[\d]{1,2})|(?:[^.]* [^.]*)" />
+      <!-- The user can also enter comma separated lat & lng values into the datalist -->
+      <datalist id="loc">
+        <option value="Current location"></option>
+        <option value="First saved location"></option>
+        <option value="Random saved location"></option>
+        <option value="Last selected saved location"></option>
+      </datalist>
+      <button>Set</button>
+    </form>
+  </main>
+  <script src="js/services/util.service.js"></script>
+  <script src="js/services/storage.service.js"></script>
+  <script src="js/services/user.service.js"></script>
+  <script src="js/services/place.service.js"></script>
+  <script src="js/user.controller.js"></script>
+</body>
+
+</html>

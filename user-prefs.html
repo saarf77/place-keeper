@@ -5,51 +5,57 @@
     <!-- PREFERENCES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/userpref.css">
     <title>Place Keeper</title>
 </head>
 
 <body onload="onInit('user-pref')">
-
+<header> 
     <nav>
         <ul>
             <a class="nav-item nav-home nav-selected" href="index.html">Home</a>
-            <a class="nav-item nav-map" href="map.html">Map</a>
+            <a class="nav-item nav-map" href="places.html">Map</a>
             <a class="nav-item nav-preferences" href="user-prefs.html">Customize</a>
         </ul>
     </nav>
+</header>
+    <h1 class="userh1">Customize it as you like</h1>
+    <main>
 
-    <h1>Customize it as you like</h1>
-    <h2 class="settings-message">Success!</h2>
-
-    <main class="main-prefs">
-        <div class="preference-box">
-            <p>Set Your Color Palette</p>
-            <form id="frm-pref-page" onsubmit="onSavePrefs(event)" class="main-prefs-item">
-                <div>
-                    <label for="name">First name:</label></td>
-                    <input type="text" id="name" name="fullName" placeholder="Type first name" required />
-                </div>
-                <div class="pref-bgc"><span>Background Color:</span>
-                    <input type="color" id="color" name="bgc" form="frmPref" value="#40E0D0">
-                </div>
-
-
-                <div class="pref-tc"><span>Text Color:</span>
-                    <input type="color" id="color" name="tc" form="frmPref" value="#FFA500">
-                </div>
-                <div>
-                    <td><label for="zoom">Zoom Factor:</label></td>
-
-                    <td><label for="tange"><span class="zoom-couner" id="sZoom">5</span><input type="range" id="zoom"
-                                name="zoom" step="1" min="1" max="21" value="5" onchange="showZoom(this.value)" />
-
-                        </label>
-                    </td>
-                </div>
-                <button onclick="onColorPrefChange(event)">Save</button>
-            </form>
-        </div>
+        <form class="settings" onsubmit="onSetSettings(event)">
+            <label>
+                <span>Name</span>
+                <input type="text" class="name">
+            </label>
+            <label>
+                <span>Background Color</span>
+                <input type="color" class="background" oninput="onSetBackgroundColor(this.value)">
+            </label>
+            <label>
+                <span>Text Color</span>
+                <input type="color" class="color" oninput="onSetTextColor(this.value)">
+            </label>
+            <label>
+                <span>Zoom Factor</span>
+                <article>
+                    <input
+                    oninput="renderValue({value})"
+                    name="zoom"
+                    type="range"
+                    min="1"
+                    max="21"
+                  />                </article>
+            </label>
+           
+                <span>Map Start Location</span>
+                <datalist id="loc">
+                    <option value="Current location"></option>
+                    <option value="First saved location"></option>
+                    <option value="Random saved location"></option>
+                    <option value="Last selected saved location"></option>
+                  </datalist>          
+            <button>Save</button>
+        </form>
 
     </main>
 
